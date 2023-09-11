@@ -6,4 +6,6 @@ import com.jspiders.project.entities.User;
 
 public interface UserRepo extends JpaRepository<User, Integer> {
 	
+	User findByUserEmail(String email);
+	
 }

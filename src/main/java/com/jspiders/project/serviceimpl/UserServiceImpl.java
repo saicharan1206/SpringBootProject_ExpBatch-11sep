@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 		User user=new User();
 		if(userRepo.findByUserEmail(userRequestDTO.getUserEmail())==null){
 			user.setUserEmail(userRequestDTO.getUserEmail().toLowerCase());
-			user.setPassword(userRequestDTO.getUserPassword());
+			user.setUserpassword(userRequestDTO.getUserPassword());
 			save = userRepo.save(user);
 			System.out.println(user.toString());
 		}

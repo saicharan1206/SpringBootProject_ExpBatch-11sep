@@ -23,7 +23,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
 	private String userEmail;
-	private String password;
+	private String userpassword;
 	@CreatedDate
 	private LocalDateTime createdDate;
 	@CreatedBy
@@ -46,11 +46,12 @@ public class User {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getPassword() {
-		return password;
+	
+	public String getUserpassword() {
+		return userpassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserpassword(String userpassword) {
+		this.userpassword = userpassword;
 	}
 	public LocalDateTime getCreatedDate() {
 		return createdDate;

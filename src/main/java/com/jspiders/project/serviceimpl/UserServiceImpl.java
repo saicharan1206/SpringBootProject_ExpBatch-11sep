@@ -1,6 +1,5 @@
 package com.jspiders.project.serviceimpl;
 
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,24 +19,24 @@ public class UserServiceImpl implements UserService {
 	private UserRepo repo;
 	@Autowired
 	private UserResponseDTO responseDTO;
+
+	
 	@Override
 	public ResponseStructure<UserResponseDTO> saveUser(UserRequestDTO userdata) 
 	{
+		   String email = userdata.getUserEmail().toLowerCase();
+		   User userExist = repo.findByUserEmail(email);
+		   if(userExist!=null)
+		   {
+			   throw new UserAlreadyExist(email+"  User Already Exist ");
+		   }
 		    User user1=new User();
-		    Date date=new Date();
-		
-			user1.setUserEmail(userdata.getUserEmail().toLowerCase());
+			user1.setUserEmail(email);
 			user1.setUserPassword(userdata.getUserPassword());
 			
-			User user=null;
-			try
-			{
-				 user = repo.save(user1);	
-			}
-			catch (Exception e) 
-			{
-				throw new UserAlreadyExist("User Already Exist");
-			}
+			
+		    User user = repo.save(user1);	
+		
 		   
 			responseDTO.setUserId(user.getUserId());
 			responseDTO.setUserEmail(user.getUserEmail());
